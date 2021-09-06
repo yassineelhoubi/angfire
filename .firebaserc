@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angfire-917b0": {
+      "hosting": {
+        "angfire": [
+          "angfire-917b0"
+        ]
+      }
+    }
+  }
+}

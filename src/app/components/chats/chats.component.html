@@ -1,0 +1,19 @@
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let chat of listChats">
+               
+                <h4><span class="badge bg-success">{{chat.name}}</span></h4>
+                <em>{{chat.msg}}</em>
+                <span class="label label-secondary">{{chat.created_at }}</span>
+            </li>
+            
+        </ul>
+        <input type="text" class="form-control">
+        <button class="btn btn-primary btn-block">New</button>
+    </div>
+</div>
+
+
