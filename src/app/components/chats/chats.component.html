@@ -4,15 +4,20 @@
     <div class="col-md-12">
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let chat of listChats">
-               
-                <h4><span class="badge bg-success">{{chat.name}}</span></h4>
+               <div class="row justify-content-between ">
+
+                   <h4 class="badge bg-success col-3">{{chat.name}}</h4>
+                   <button (click)="deleteChat(chat)" class="btn btn-outline-danger col-lg-1 col-2 btn-sm h-25">delete</button>
+               </div>
                 <em>{{chat.msg}}</em>
-                <span class="label label-secondary">{{chat.created_at }}</span>
+                
             </li>
+
+            
             
         </ul>
-        <input type="text" class="form-control">
-        <button class="btn btn-primary btn-block">New</button>
+        <input (keyup.enter)="createNewChat()" [(ngModel)]="chat.msg" type="text"   class="form-control">
+        
     </div>
 </div>
 
