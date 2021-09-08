@@ -7,7 +7,7 @@ import { ChatService } from 'src/app/services/chat.service';
   styleUrls: ['./chats.component.css']
 })
 export class ChatsComponent implements OnInit {
-  // resultChats:any[]=[];
+
   listChats:any[]=[];
   show_btn:boolean=false;
   chat: any = {
@@ -58,7 +58,6 @@ export class ChatsComponent implements OnInit {
     console.log(this.chat)
     this.chatService.UpdateChat(this.doc_id ,this.chat)
     .then(res =>{
-      console.log(res)
       this.chat ={
         name: 'testname',
         msg: ''

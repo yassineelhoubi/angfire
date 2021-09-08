@@ -54,11 +54,6 @@ export class ChatService {
     return this.afs.collection('chats').doc(id).delete()
   }
 
-  ToUpdateChat(chat:Chat){
-    
-    return this.afs.collection('chats').doc(chat.id).valueChanges()
-    
-  }
   UpdateChat(doc_id:string , chat:Chat){
     return this.afs.collection('chats').doc(doc_id).update({msg:chat.msg});
   }
