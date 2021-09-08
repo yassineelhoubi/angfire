@@ -9,10 +9,12 @@ import { ChatService } from 'src/app/services/chat.service';
 export class ChatsComponent implements OnInit {
   // resultChats:any[]=[];
   listChats:any[]=[];
-  chat: Chat = {
+  show_btn:boolean=false;
+  chat: any = {
     name: 'testname',
     msg: ''
   };
+  doc_id:any ="";
   constructor(private chatService: ChatService) { }
 
  
@@ -36,11 +38,35 @@ export class ChatsComponent implements OnInit {
   }
   deleteChat(chat:string){
     this.chatService.deleteChat(chat)
+    this.show_btn = false;
   
   }
-  // ToupdateChat(chat:Chat){
-  //   console.log(chat.id)
-  //   this.chatService.updateChat(chat)
-  // }
+  ToUpdateChat(chat:Chat){
+    this.show_btn = true;
+    this.doc_id = chat.id;
+    this.chat = chat;
+  }
+  clearUpdate(){
+    this.show_btn = false;
+    this.chat ={
+      name: 'testname',
+      msg: ''
+    }
+  }
+
+  UpdateChat(){
+    console.log(this.chat)
+    this.chatService.UpdateChat(this.doc_id ,this.chat)
+    .then(res =>{
+      console.log(res)
+      this.chat ={
+        name: 'testname',
+        msg: ''
+      }
+    })
+    this.show_btn = false;
+
+    
+  }
 
 }
