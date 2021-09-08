@@ -7,7 +7,7 @@ import { ChatService } from 'src/app/services/chat.service';
   styleUrls: ['./chats.component.css']
 })
 export class ChatsComponent implements OnInit {
-  keys:any[]=[];
+  // resultChats:any[]=[];
   listChats:any[]=[];
   chat: Chat = {
     name: 'testname',
@@ -34,9 +34,13 @@ export class ChatsComponent implements OnInit {
       }
     })
   }
-  deleteChat(chat:any){
+  deleteChat(chat:string){
     this.chatService.deleteChat(chat)
   
   }
+  // ToupdateChat(chat:Chat){
+  //   console.log(chat.id)
+  //   this.chatService.updateChat(chat)
+  // }
 
 }

@@ -6,10 +6,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChatService {
-
+  
   constructor(private  afs: AngularFirestore)  { }
-
-  getChats(){
+  
+  getChats(){    
+  
     return this.afs.collection('chats')
     .snapshotChanges()
     .pipe(
@@ -27,17 +28,35 @@ export class ChatService {
     );
     
   }
-
+  // data: Chat[]=[] ;
+  // getChats(){    
+  //   this.data = [];
+  //   this.afs.collection('chats')
+  //   .snapshotChanges()
+  //   .subscribe(res => {
+  //     res.forEach(snap =>{
+  //         const obj:any = snap.payload.doc.data()
+  //         obj.id = snap.payload.doc.id
+  //         this.data.push(obj)
+  //     })
+  //   })
+  //   console.log(this.data)
+  //   return this.data
+  // }
 
 
   saveChat(chat: Chat){
     return this.afs.collection('chats').add(chat);
   }
 
-  deleteChat(id: any){
-    console.log(id)
+  deleteChat(id: string){
+
     return this.afs.collection('chats').doc(id).delete()
   }
+  // updateChat(chat:Chat){
+  //   console.log(chat)
+  //   return this.afs.collection('chats').
+  // }
 
   
 }
