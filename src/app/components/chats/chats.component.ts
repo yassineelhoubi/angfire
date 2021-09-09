@@ -8,64 +8,68 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class ChatsComponent implements OnInit {
 
-  listChats:any[]=[];
-  show_btn:boolean=false;
+  listChats: any[] = [];
+  show_btn: boolean = false;
   chat: any = {
     name: 'testname',
     msg: ''
   };
-  doc_id:any ="";
+  doc_id: any = "";
   constructor(private chatService: ChatService) { }
 
- 
 
-  ngOnInit(): void {
+
+  ngOnInit() {
     this.chatService.getChats()
-    .subscribe(res => this.listChats = res);
+    this.chatService.dataSubject.subscribe(res => {
+      this.listChats = res
+      console.log("yassine")
+    });
 
+    // .subscribe(res => this.listChats = res);
 
   }
 
 
-  createNewChat(){
+  createNewChat() {
     this.chatService.saveChat(this.chat)
-    .then(res =>{
-      this.chat ={
-        name: 'testname',
-        msg: ''
-      }
-    })
+      .then(res => {
+        this.chat = {
+          name: 'testname',
+          msg: ''
+        }
+      })
   }
-  deleteChat(chat:string){
+  deleteChat(chat: string) {
     this.chatService.deleteChat(chat)
     this.show_btn = false;
-  
+
   }
-  ToUpdateChat(chat:Chat){
+  ToUpdateChat(chat: Chat) {
     this.show_btn = true;
     this.doc_id = chat.id;
     this.chat = chat;
   }
-  clearUpdate(){
+  clearUpdate() {
     this.show_btn = false;
-    this.chat ={
+    this.chat = {
       name: 'testname',
       msg: ''
     }
   }
 
-  UpdateChat(){
+  UpdateChat() {
     console.log(this.chat)
-    this.chatService.UpdateChat(this.doc_id ,this.chat)
-    .then(res =>{
-      this.chat ={
-        name: 'testname',
-        msg: ''
-      }
-    })
+    this.chatService.UpdateChat(this.doc_id, this.chat)
+      .then(res => {
+        this.chat = {
+          name: 'testname',
+          msg: ''
+        }
+      })
     this.show_btn = false;
 
-    
+
   }
 
 }
